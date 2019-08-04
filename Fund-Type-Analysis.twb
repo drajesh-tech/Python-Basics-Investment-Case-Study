@@ -1,0 +1,787 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20183.18.1219.1533                               -->
+<workbook original-version='18.1' source-build='2018.3.2 (20183.18.1219.1533)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='funding_type' inline='true' name='federated.09lenm80hk2iv016pwujn1ke34wc' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='funding_type' name='textscan.0r1irse0xaazxo18ow1mo1t177bv'>
+            <connection class='textscan' directory='D:/Group-Assignments/Course1/work-in-progress/GA-Feb-03-2019/Tableau-Files' filename='funding_type.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.0r1irse0xaazxo18ow1mo1t177bv' name='funding_type.csv' table='[funding_type#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_IN' separator=','>
+            <column datatype='integer' name='F1' ordinal='0' />
+            <column datatype='string' name='funding_round_type' ordinal='1' />
+            <column datatype='real' name='raised_amount_usd' ordinal='2' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[funding_type.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;Rs&quot;</attribute>
+              <attribute datatype='string' name='debit-close-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='debit-open-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_IN&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F1</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[F1]</local-name>
+            <parent-name>[funding_type.csv]</parent-name>
+            <remote-alias>F1</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>funding_round_type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[funding_round_type]</local-name>
+            <parent-name>[funding_type.csv]</parent-name>
+            <remote-alias>funding_round_type</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>raised_amount_usd</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[raised_amount_usd]</local-name>
+            <parent-name>[funding_type.csv]</parent-name>
+            <remote-alias>raised_amount_usd</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Funding Round Type' datatype='string' name='[funding_round_type]' role='dimension' type='nominal' />
+      <column caption='Investment Amount' datatype='real' name='[raised_amount_usd]' role='measure' type='quantitative' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.451908' measure-ordering='alphabetic' measure-percentage='0.548092' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;India&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Fund_Type'>
+      <layout-options>
+        <title>
+          <formatted-text />
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='funding_type' name='federated.09lenm80hk2iv016pwujn1ke34wc' />
+          </datasources>
+          <datasource-dependencies datasource='federated.09lenm80hk2iv016pwujn1ke34wc'>
+            <column caption='Funding Round Type' datatype='string' name='[funding_round_type]' role='dimension' type='nominal' />
+            <column-instance column='[funding_round_type]' derivation='None' name='[none:funding_round_type:nk]' pivot='key' type='nominal' />
+            <column caption='Investment Amount' datatype='real' name='[raised_amount_usd]' role='measure' type='quantitative' />
+            <column-instance column='[raised_amount_usd]' derivation='Sum' name='[sum:raised_amount_usd:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='quantitative' column='[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]' included-values='in-range'>
+            <min>0.40999999999999998</min>
+            <max>168.69999999999999</max>
+          </filter>
+          <slices>
+            <column>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]' scope='cols' value='Investment Amount' />
+            <format attr='height' field='[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]' value='71' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]' value='85' />
+            <format attr='height' field='[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]' value='33' />
+            <format attr='text-format' field='[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]' value='c&quot;$&quot;#,##0.00&quot; M&quot;;&quot;$&quot;-#,##0.00&quot; M&quot;' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]' value='244' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-format' field='[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]' value='' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</rows>
+        <cols>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</cols>
+        <mark-labels>
+          <mark-label id='0' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;angel&quot;</value>
+                <value>0.95999999999999996</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='1' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;convertible_note&quot;</value>
+                <value>1.45</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='2' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;debt_financing&quot;</value>
+                <value>17.039999999999999</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='3' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;equity_crowdfunding&quot;</value>
+                <value>0.54000000000000004</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='4' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;grant&quot;</value>
+                <value>4.2999999999999998</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='5' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;post_ipo_debt&quot;</value>
+                <value>168.69999999999999</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='6' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;post_ipo_equity&quot;</value>
+                <value>82.180000000000007</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='7' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;private_equity&quot;</value>
+                <value>73.310000000000002</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='8' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;product_crowdfunding&quot;</value>
+                <value>1.3599999999999999</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='9' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;secondary_market&quot;</value>
+                <value>79.650000000000006</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='10' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;seed&quot;</value>
+                <value>0.71999999999999997</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='11' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;undisclosed&quot;</value>
+                <value>19.239999999999998</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='12' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;venture&quot;</value>
+                <value>11.75</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+          <mark-label id='13' label-state='on'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                  </x-fields>
+                  <y-fields>
+                    <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+                  <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[sum:raised_amount_usd:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>&quot;non_equity_assistance&quot;</value>
+                <value>0.40999999999999998</value>
+              </tuple>
+            </tuple-reference>
+          </mark-label>
+        </mark-labels>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows saved-dpi-scale-factor='1.5' source-height='44'>
+    <window class='worksheet' maximized='true' name='Fund_Type'>
+      <cards>
+        <edge name='left'>
+          <strip size='133'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.09lenm80hk2iv016pwujn1ke34wc].[none:funding_round_type:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{E10C551F-ECA2-41D9-8317-D21DC6E0B4A5}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Fund_Type' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>

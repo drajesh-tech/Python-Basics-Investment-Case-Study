@@ -1,0 +1,15 @@
+,funding_round_type,raised_amount_usd
+0,non_equity_assistance,0.43
+1,equity_crowdfunding,0.63
+2,seed,0.72
+3,angel,0.96
+4,product_crowdfunding,1.38
+5,convertible_note,1.48
+6,grant,4.3
+7,venture,11.76
+8,debt_financing,17.11
+9,undisclosed,19.44
+10,private_equity,73.42
+11,secondary_market,79.65
+12,post_ipo_equity,82.18
+13,post_ipo_debt,168.7
